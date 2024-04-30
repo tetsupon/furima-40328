@@ -2,7 +2,6 @@
 
 ## usersテーブル
 
-
 |Column                |Type              |Options                    |
 | -------------------- | ---------------- | ------------------------- |
 | nickname            | string            | null: false               |
@@ -59,7 +58,6 @@
 
 |Column                |Type               |Options                         |
 | -------------------- | ----------------  | ------------------------------ |
-| post_code            | string            | null: false, foreign_key: true |
 | prefecture_id        | integer           | null: false                    |
 | municipality         | string            | null: false                    |
 | street_address       | string            | null: false                    |
