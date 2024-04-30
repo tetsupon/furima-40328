@@ -58,7 +58,8 @@
 
 |Column                |Type               |Options                         |
 | -------------------- | ----------------  | ------------------------------ |
-| prefecture_id        | integer           | null: false                    |
+| post_code            | string            | null: false, foreign_key: true |
+| shipping_area_id     | integer           | null: false                    |
 | municipality         | string            | null: false                    |
 | street_address       | string            | null: false                    |
 | building_name        | string            |                                |
