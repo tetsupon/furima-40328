@@ -5,13 +5,13 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   with_options presence: true do
-    
+
    validates :nickname, uniqueness: true
 
    validates :email,    uniqueness: true
    # 重複しないように
 
-   validates :password, format: { with: /\A[a-zA-Z]+\z/ }
+   validates :password, format: { with: /\A[a-zA-Z0-9]+\z/ }
    # 半角英数字混合
 
    validates :family_name, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
@@ -22,6 +22,6 @@ class User < ApplicationRecord
    validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/ }
    # 全角カタカナ
 
-   validates :birth_day, presence: true
+   validates :birth_day
   end 
 end
