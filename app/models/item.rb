@@ -15,7 +15,6 @@ class Item < ApplicationRecord
   belongs_to :shipping_day
   
   with_options presence: true do
-    validates :user_id
     validates :image
     validates :product_name 
     validates :product_description
@@ -24,7 +23,7 @@ class Item < ApplicationRecord
     validates :delivery_charge_id
     validates :shipping_area_id
     validates :shipping_day_id
-    validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+    validates :price, numericality: { only_integer: true,greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
   end
 
   with_options numericality: { other_than: 0 } do
