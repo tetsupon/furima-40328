@@ -18,8 +18,19 @@ class ItemsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-  
 
+  def edit
+  end
+  
+  def update
+  end
+
+  def show
+    @item = Item.find(params[:id])
+  end
+
+  def destroy
+  end  
 
   private
 
