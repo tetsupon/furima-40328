@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destory]
 
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
@@ -43,7 +43,7 @@ class ItemsController < ApplicationController
     if @item.destroy
       redirect_to root_path
     else
-      render :show
+      redirect_to root_path
     end
    end
   end
