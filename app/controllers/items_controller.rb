@@ -3,6 +3,9 @@ class ItemsController < ApplicationController
 
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
+  before_action :redirect_if_not_authorized, only: [:edit, :update, :destroy]
+
+
 
   def index
     @items = Item.all.order('created_at DESC')
@@ -57,5 +60,11 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
+
+  def redirect_if_not_authorized
+    if @item.buyer.present? || @item.user_id != current_user.id
+      redirect_to root_path
+    end
+  end  
 
 end
