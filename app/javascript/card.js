@@ -16,7 +16,7 @@ const pay = () => {
     e.preventDefault(); // フォームのデフォルト送信を防ぐ
     payjp.createToken(numberElement).then((response) => {
       if (response.error) {
-        console.log(response.error.message); // エラーがあればログに表示
+        // エラーがあれば何もせず終了
       } else {
         const token = response.id;
         console.log(token); // トークンをコンソールに表示

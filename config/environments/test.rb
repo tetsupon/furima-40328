@@ -57,4 +57,12 @@ Rails.application.configure do
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
+
+  # Active Job キューアダプターの設定
+  config.active_job.queue_adapter = :inline
+
+  # データベース接続の問題を解決するための設定
+  config.active_record.maintain_test_schema = true
+
+  
 end

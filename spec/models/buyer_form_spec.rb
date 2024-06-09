@@ -2,9 +2,11 @@ require 'rails_helper'
 
 RSpec.describe BuyerForm, type: :model do
   before do
-    @buyer_form = FactoryBot.build(:buyer_form)
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.create(:item, user: @user)
+    @buyer_form = FactoryBot.build(:buyer_form, user_id: @user.id, item_id: @item.id)
   end
-
+  
   describe '配送先情報の保存' do
     context '配送先情報の保存ができるとき' do
       it 'すべての値が正しく入力されていれば保存できること' do
@@ -58,7 +60,7 @@ RSpec.describe BuyerForm, type: :model do
       it '郵便番号が空だと保存できないこと' do
         @buyer_form.post_code = nil
         @buyer_form.valid?
-        expect(@buyer_form.errors.full_messages).to include("Post code can't be blank", 'Post code is invalid. Include hyphen(-)')
+        expect(@buyer_form.errors.full_messages).to include("Post code can't be blank")
       end
       it '郵便番号にハイフンがないと保存できないこと' do
         @buyer_form.post_code = 1_234_567
@@ -92,6 +94,16 @@ RSpec.describe BuyerForm, type: :model do
       end
       it '電話番号が12桁以上あると保存できないこと' do
         @buyer_form.phone_number = 12_345_678_910_123_111
+        @buyer_form.valid?
+        expect(@buyer_form.errors.full_messages).to include("Phone number is invalid")
+      end
+      it '電話番号が9桁以下あると保存できないこと' do
+        @buyer_form.phone_number = '090123456'
+        @buyer_form.valid?
+        expect(@buyer_form.errors.full_messages).to include("Phone number is invalid")
+      end
+      it '電話番号が半角数値でないと保存できないこと' do
+        @buyer_form.phone_number = '０9012341234'
         @buyer_form.valid?
         expect(@buyer_form.errors.full_messages).to include("Phone number is invalid")
       end

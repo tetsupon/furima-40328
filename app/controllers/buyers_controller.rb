@@ -4,12 +4,10 @@ class BuyersController < ApplicationController
 
 
   def index
-    @item = Item.find(params[:item_id])
     @buyerform = BuyerForm.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @buyerform = BuyerForm.new(buyer_params)
     if @buyerform.valid?
       pay_item
