@@ -3,6 +3,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :product_category
   
   belongs_to :user
+  has_one :buyer
 
   # active_storageとのアソシエーション（items・active_storage_blobsテーブルを関連付け）
   has_one_attached :image
