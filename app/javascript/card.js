@@ -19,7 +19,6 @@ const pay = () => {
         // エラーがあれば何もせず終了
       } else {
         const token = response.id;
-        console.log(token); // トークンをコンソールに表示
         // フォームにトークンを追加して送信
         const hiddenInput = document.createElement('input');
         hiddenInput.setAttribute('type', 'hidden');
