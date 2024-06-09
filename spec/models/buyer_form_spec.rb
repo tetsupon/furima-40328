@@ -95,6 +95,11 @@ RSpec.describe BuyerForm, type: :model do
         @buyer_form.valid?
         expect(@buyer_form.errors.full_messages).to include("Phone number is invalid")
       end
+      it 'トークンが空だと保存できないこと' do
+        @buyer_form.token = nil
+        @buyer_form.valid?
+        expect(@buyer_form.errors.full_messages).to include("Token can't be blank")
+      end
     end
   end
 end
