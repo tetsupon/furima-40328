@@ -4,6 +4,7 @@ class BuyersController < ApplicationController
 
 
   def index
+    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @buyerform = BuyerForm.new
   end
 
