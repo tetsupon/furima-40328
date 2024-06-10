@@ -34,3 +34,4 @@ const pay = () => {
 
 // ページ読み込み時にpay関数を実行
 window.addEventListener("turbo:load", pay);
+window.addEventListener("turbo:render", pay);
