@@ -1,11 +1,15 @@
+let payjp;
+
 const pay = () => {
-  const publicKey = gon.public_key
-  const payjp = Payjp(publicKey) // PAY.JPテスト公開鍵
+  const publicKey = gon.public_key;
+  if (!payjp) {
+    payjp = Payjp(publicKey); // PAY.JPテスト公開鍵
+  }
   const elements = payjp.elements();
   const numberElement = elements.create('cardNumber');
   const expiryElement = elements.create('cardExpiry');
   const cvcElement = elements.create('cardCvc');
-
+  
   // IDを持つdivにエレメントをマウント
   numberElement.mount('#number-form');
   expiryElement.mount('#expiry-form');
@@ -14,8 +18,9 @@ const pay = () => {
   // フォームの送信イベントをハンドル
   const form = document.getElementById('charge-form');
   form.addEventListener("submit", (e) => {
-    e.preventDefault(); // フォームのデフォルト送信を防ぐ
-    payjp.createToken(numberElement).then((response) => {
+    
+    
+    payjp.createToken(numberElement).then(function(response) {
       if (response.error) {
         // エラーがあれば何もせず終了
       } else {
@@ -27,6 +32,7 @@ const pay = () => {
         hiddenInput.setAttribute('value', token);
         form.appendChild(hiddenInput);
         form.submit(); // フォームを送信
+        e.preventDefault(); // フォームのデフォルト送信を防ぐ
       }
     });
   });
